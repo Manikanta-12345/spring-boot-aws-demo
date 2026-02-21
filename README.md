@@ -23,3 +23,24 @@ Edit subnet associations and select subnets need public access
 ![image](https://github.com/Manikanta-12345/spring-boot-aws-demo/blob/master/screenshot/Screenshot-8.png)
 
 ![image](https://github.com/Manikanta-12345/spring-boot-aws-demo/blob/master/screenshot/Screenshot-9.png)
+
+
+✅ PHASE 3 — Create EC2 (Build Machine)
+
+Launch EC2 in public subnet temporarily.
+
+Install:
+
+sudo yum update -y
+sudo yum install java-17-amazon-corretto -y
+sudo yum install git -y
+sudo yum install maven -y
+Clone your project:
+
+git clone <repo>
+cd project
+mvn clean package
+Move JAR:
+
+sudo mkdir /opt/app
+sudo mv target/demo.jar /opt/app/
