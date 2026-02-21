@@ -44,3 +44,37 @@ Move JAR:
 
 sudo mkdir /opt/app
 sudo mv target/demo.jar /opt/app/
+
+✅ PHASE 4 — Create systemd Service (IMPORTANT)
+
+Create:
+
+sudo vi /etc/systemd/system/springboot.service
+Add:
+
+sudo tee /etc/systemd/system/springboot.service > /dev/null <<EOF
+[Unit]
+Description=Spring Boot App
+After=network.target
+
+[Service]
+User=ec2-user
+Group=ec2-user
+Type=simple
+WorkingDirectory=/opt/app
+ExecStart=/usr/bin/java -Xms256m -Xmx512m -jar /opt/app/spring-ec2-web-0.0.1-SNAPSHOT.jar
+SuccessExitStatus=143
+Restart=always
+RestartSec=5
+LimitNOFILE=65536
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+Test:
+
+curl localhost:8080/ip
+If working ✅ continue.
