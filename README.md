@@ -78,3 +78,10 @@ Test:
 
 curl localhost:8080/ip
 If working ✅ continue.
+
+sudo systemctl daemon-reload
+sudo systemctl restart springboot.service
+sudo systemctl status springboot.service
+sudo systemctl status springboot.service
+
+
